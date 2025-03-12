@@ -10,7 +10,7 @@ def main():
         chunk_counter = 0
         while True:
             # Generate a unique filename for each recording
-            filename = os.path.join("recordings/", f"chunk_{chunk_counter}.wav")
+            filename = os.path.join("output_recordings/", f"chunk_{chunk_counter}.wav")
             record_audio(filename)
             transcription = transcribe_audio(filename)
 

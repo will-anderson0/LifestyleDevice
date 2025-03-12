@@ -6,10 +6,12 @@ sys.path.insert(0, os.path.abspath(os.path.dirname(__file__) + "/.."))
 
 from transcribe_audio import transcribe_audio
 
+PATH = 'tests/recordings/'
+
 @pytest.fixture
 # Ensure a test audio file exists before running tests.
 def test_audio():
-    audio_file = "recordings/mock_audio.wav"
+    audio_file = f"{PATH}mock_audio.wav"
     model = "whisper.cpp/models/ggml-tiny.bin"
 
     if not os.path.exists(audio_file):
@@ -29,20 +31,20 @@ def test_transcription_runs(test_audio):
 
 # Test if transcription returns None for missing audio files.
 def test_invalid_audio_path():
-    result = transcribe_audio("recordings/nonexistent.wav")
+    result = transcribe_audio(f"{PATH}nonexistent.wav")
     assert result is None, "Transcription should return None for missing audio files."
 
 # Test if transcription returns None for empty audio files.
 def test_empty_audio_file():
-    result = transcribe_audio("recordings/empty.wav")
+    result = transcribe_audio(f"{PATH}empty.wav")
     assert result is None, "Transcription should return None for empty audio files."
 
 # Test if on corrupted audio file.
 def test_currupted_audio_file():
-    result = transcribe_audio("recordings/corrupted_audio.wav")
+    result = transcribe_audio(f"{PATH}corrupted_audio.wav")
     assert result is None, "Transcription should return None for corrupted audio files."
 
 # Test if on audio file with differnt sample rate.
 def test_wrong_sample_rate_audio_file():
-    result = transcribe_audio("recordings/wrong_sample_rate.wav")
+    result = transcribe_audio(f"{PATH}wrong_sample_rate.wav")
     assert result == "Hi, my name is Will, and this is a test for 12 Hertz item.", "Transcription should return None for audio files with wrong sample rate."
