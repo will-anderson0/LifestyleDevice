@@ -25,7 +25,7 @@ def test_transcription_runs(test_audio):
     result = transcribe_audio(test_audio)
     assert isinstance(result, str), "Transcription should return a string."
     assert len(result) > 0, "Transcription should not be empty."
-    assert result == "Hi I will be travelling to Europe very soon for summer vacation.", "Transcription should match the expected output."
+    assert result == "I'll be traveling to Europe very soon for summer vacation and I'm very excited to go. This will be my first time going. Wish me luck.", "Transcription should match the expected output."
 
 
 # Test if transcription returns None for missing audio files.

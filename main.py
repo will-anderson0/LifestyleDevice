@@ -1,10 +1,11 @@
-from transcribe import transcribe_audio
+from transcribe_audio import transcribe_audio
 from habit_analysis import analyze_habits
 from record_audio import record_audio
 import os
 import time
 
 def main():
+    # Record audio and transcribe it continuously
     try:
         chunk_counter = 0
         while True:
