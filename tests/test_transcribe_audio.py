@@ -27,8 +27,22 @@ def test_transcription_runs(test_audio):
     assert len(result) > 0, "Transcription should not be empty."
     assert result == "I'll be traveling to Europe very soon for summer vacation and I'm very excited to go. This will be my first time going. Wish me luck.", "Transcription should match the expected output."
 
-
 # Test if transcription returns None for missing audio files.
 def test_invalid_audio_path():
     result = transcribe_audio("recordings/nonexistent.wav")
     assert result is None, "Transcription should return None for missing audio files."
+
+# Test if transcription returns None for empty audio files.
+def test_empty_audio_file():
+    result = transcribe_audio("recordings/empty.wav")
+    assert result is None, "Transcription should return None for empty audio files."
+
+# Test if on corrupted audio file.
+def test_currupted_audio_file():
+    result = transcribe_audio("recordings/corrupted_audio.wav")
+    assert result is None, "Transcription should return None for corrupted audio files."
+
+# Test if on audio file with differnt sample rate.
+def test_wrong_sample_rate_audio_file():
+    result = transcribe_audio("recordings/wrong_sample_rate.wav")
+    assert result == "Hi, my name is Will, and this is a test for 12 Hertz item.", "Transcription should return None for audio files with wrong sample rate."

@@ -4,17 +4,12 @@ import wave
 import os
 
 # Set recording parameters
-DURATION = 20  # Record for 20 seconds
-SAMPLE_RATE = 16000  # 16 kHz sample rate (Whisper standard)
+DURATION = 30  # Record for 20 seconds
+SAMPLE_RATE = 12000  # 16 kHz sample rate (Whisper standard)
 CHANNELS = 1  # Mono audio
-OUTPUT_DIR = "./recordings/"  # Directory to save recordings
 
-# Ensure recordings directory exists
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-
+# Records a 20-second audio chunk and saves it with a sequential filename.
 def record_audio(filename):
-    """Records a 20-second audio chunk and saves it with a sequential filename."""
-
     print(f"Recording {DURATION} seconds... (Saving as {filename})")
 
     # Record audio

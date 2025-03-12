@@ -24,8 +24,14 @@ def transcribe_audio(filename="recordings/mock_audio.wav", model="whisper.cpp/mo
         if result.returncode != 0:
             print(f"❌ Whisper failed: {result.stderr}")
             return None
+        
+        transcription = clean_transcription(result.stdout.strip())
 
-        return clean_transcription(result.stdout.strip())
+        if transcription == '':
+            print("Audio chunk is empty or contains only noise.")
+            return None
+
+        return transcription
 
     except FileNotFoundError:
         print(f"❌ Error: Whisper executable not found at {whisper_path}")
